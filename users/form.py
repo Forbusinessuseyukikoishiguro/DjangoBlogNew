@@ -1,11 +1,16 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from .models import Post, Category
 
-
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-
+class PostForm(forms.ModelForm):
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    
     class Meta:
-        model = User
-        fields = ["username", "email", "password1", "password2"]
+        model = Post
+        fields = ['title', 'content', 'categories', 'audio_file', 'youtube_url']
+        widgets = {
+            'youtube_url': forms.URLInput(attrs={'placeholder': 'https://www.youtube.com/watch?v=XXXXXXXXXXX'}),
+        }

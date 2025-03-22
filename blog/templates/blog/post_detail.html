@@ -4,6 +4,17 @@
     <article>
         <h1>{{ object.title }}</h1>
         <p class="post-meta">{{ object.date_posted|date:"Y年m月d日" }} by {{ object.author }}</p>
+        
+        <!-- ここにカテゴリ表示部分を追加 -->
+        {% if object.categories.all %}
+            <p class="post-categories">
+                カテゴリ: 
+                {% for category in object.categories.all %}
+                    <span class="category-tag">{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+        
         {% if object.author == user %}
             <div class="post-actions">
                 <a href="{% url 'post-update' object.id %}">編集</a>
@@ -12,7 +23,7 @@
         {% endif %}
         <div>{{ object.content }}</div>
 
-        <!-- ここから音声ファイルとYouTube動画の表示部分を追加 -->
+        <!-- ここから音声ファイルとYouTube動画の表示部分 -->
         {% if object.audio_file %}
         <div class="audio-section" style="margin: 20px 0;">
             <h3>音声</h3>
@@ -36,7 +47,6 @@
             </div>
         </div>
         {% endif %}
-        <!-- ここまで追加 -->
     </article>
     <p><a href="{% url 'blog-home' %}">← ホームに戻る</a></p>
 {% endblock %}
