@@ -4,6 +4,10 @@ from django.contrib.auth import views as auth_views
 from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
+from django.contrib import admin
+from django.conf import settings
+
 
 # LogoutViewを拡張してGETリクエストを許可するクラスを作成
 class CustomLogoutView(auth_views.LogoutView):
@@ -17,6 +21,7 @@ urlpatterns = [
     # カスタムログアウトビューを使用
     path('logout/', CustomLogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('myblog/', include('blog.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 # 開発環境でのみメディアファイルのURLを追加

@@ -40,8 +40,21 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog",  # ブログアプリを追加
     "users",  # ユーザーアプリを追加
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
+
+
+# CKEditorの設定
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 'full',
+    },
+}   
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
