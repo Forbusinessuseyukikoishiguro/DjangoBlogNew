@@ -3,49 +3,208 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <h1><a href="{% url 'blog-home' %}">AIエンジニア転職を目指して勉強するブログ</a></h1>
+    <title>YUKIKO_AIエンジニア転職を目指して勉強するブログ</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
-        header { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        article { margin-bottom: 30px; }
-        h1 { color: #333; }
-        .post-meta { color: #666; font-size: 0.9em; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        /* 桜色と和風の色合いを設定 */
+        :root {
+            --sakura-light: #FFEAEF;  /* 淡い桜色 */
+            --sakura-medium: #FFD7E0;  /* 中間の桜色 */
+            --sakura-dark: #FF9EB5;   /* 濃い桜色 */
+            --brown-light: #8C6954;   /* 明るい茶色 */
+            --brown-dark: #5E4B3E;    /* 暗い茶色 */
+            --green-soft: #D6E9C6;    /* 和風の柔らかい緑 */
+        }
+        
+        body { 
+            font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", serif;
+            line-height: 1.7;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--sakura-light);
+            color: var(--brown-dark);
+        }
+        
+        header { 
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--sakura-dark);
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        article { 
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        h1 { 
+            color: var(--brown-dark);
+            font-weight: normal;
+        }
+        
+        .post-meta { 
+            color: var(--brown-light);
+            font-size: 0.9em;
+        }
+        
+        a { 
+            color: var(--brown-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover { 
+            color: var(--sakura-dark);
+            text-decoration: none;
+        }
         
         /* ナビゲーション */
-        nav { margin-bottom: 20px; }
-        nav a { margin-right: 15px; }
+        nav { 
+            margin-bottom: 20px;
+        }
+        
+        nav a { 
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            background-color: var(--sakura-medium);
+            color: var(--brown-dark);
+        }
+        
+        nav a:hover {
+            background-color: var(--sakura-dark);
+            color: white;
+        }
         
         /* フォーム */
-        .form-container { max-width: 500px; }
-        fieldset { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; }
-        legend { padding: 0 10px; font-weight: bold; }
-        label { display: block; margin-bottom: 5px; }
-        input, textarea { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ddd; }
-        button { padding: 8px 15px; background: #0066cc; color: white; border: none; cursor: pointer; }
-        button:hover { background: #0055aa; }
-        .form-footer { margin-top: 15px; }
+        .form-container { 
+            max-width: 500px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        fieldset { 
+            border: 1px solid var(--sakura-medium);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        legend { 
+            padding: 0 10px;
+            font-weight: bold;
+            color: var(--brown-dark);
+        }
+        
+        label { 
+            display: block;
+            margin-bottom: 5px;
+            color: var(--brown-dark);
+        }
+        
+        input, textarea { 
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid var(--sakura-medium);
+            border-radius: 4px;
+        }
+        
+        button { 
+            padding: 8px 15px;
+            background: var(--sakura-dark);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        button:hover { 
+            background: var(--brown-light);
+        }
+        
+        .form-footer { 
+            margin-top: 15px;
+        }
         
         /* メッセージ */
-        .messages { margin-bottom: 20px; }
-        .alert { padding: 10px; margin-bottom: 10px; border-radius: 3px; }
-        .alert-success { background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; }
-        .alert-error { background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; }
+        .messages { 
+            margin-bottom: 20px;
+        }
+        
+        .alert { 
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .alert-success { 
+            background-color: var(--green-soft);
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        
+        .alert-error { 
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
         
         /* 投稿アクション */
-        .post-actions { margin-bottom: 15px; }
-        .post-actions a { margin-right: 10px; padding: 3px 8px; background: #f8f8f8; border: 1px solid #ddd; }
+        .post-actions { 
+            margin-bottom: 15px;
+        }
+        
+        .post-actions a { 
+            margin-right: 10px;
+            padding: 3px 8px;
+            background: var(--sakura-light);
+            border: 1px solid var(--sakura-medium);
+            border-radius: 4px;
+        }
         
         /* ページネーション */
-        .pagination { margin: 30px 0; text-align: center; }
-        .pagination a, .pagination span { padding: 5px 10px; margin: 0 3px; border: 1px solid #ddd; }
-        .pagination .current { background: #0066cc; color: white; border-color: #0066cc; }
+        .pagination { 
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .pagination a, .pagination span { 
+            padding: 5px 10px;
+            margin: 0 3px;
+            border: 1px solid var(--sakura-medium);
+            border-radius: 4px;
+        }
+        
+        .pagination .current { 
+            background: var(--sakura-dark);
+            color: white;
+            border-color: var(--sakura-dark);
+        }
+        
+        /* カテゴリタグ */
+        .category-tag {
+            display: inline-block;
+            background-color: var(--sakura-medium);
+            padding: 2px 8px;
+            margin-right: 5px;
+            border-radius: 12px;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1><a href="{% url 'blog-home' %}">My Blog</a></h1>
+        <h1><a href="{% url 'blog-home' %}">AIエンジニア転職を目指して勉強するブログ</a></h1>
         <nav>
             <a href="{% url 'blog-home' %}">ホーム</a>
             {% if user.is_authenticated %}
