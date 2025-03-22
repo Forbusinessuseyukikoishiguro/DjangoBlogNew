@@ -20,7 +20,6 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     audio_file = models.FileField(upload_to='audio/', null=True, blank=True)
     youtube_url = models.URLField(max_length=200, null=True, blank=True)
-    # 多対多リレーションシップでカテゴリを追加
     categories = models.ManyToManyField(Category, blank=True, related_name='posts')
     
     def __str__(self):

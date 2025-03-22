@@ -4,6 +4,17 @@
         <article>
             <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
             <p class="post-meta">{{ post.date_posted|date:"Y年m月d日" }} by {{ post.author }}</p>
+            
+            <!-- カテゴリ表示部分を追加 -->
+            {% if post.categories.all %}
+                <p class="post-categories">
+                    カテゴリ: 
+                    {% for category in post.categories.all %}
+                        <span class="category-tag">{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            
             <p>{{ post.content|truncatewords:30 }}</p>
         </article>
     {% empty %}
