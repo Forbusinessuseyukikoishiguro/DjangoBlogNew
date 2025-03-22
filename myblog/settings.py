@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-+%v#^%$3$fnb21+@c+hsw-t4#en*%2mv_ekx7rrlgp$0o(t*@j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ログイン関連の設定
 LOGIN_REDIRECT_URL = "blog-home"  # ログイン成功後のリダイレクト先
 LOGIN_URL = "login"  # ログインページのURL名
+
+LOGOUT_REDIRECT_URL = '/' # ログアウト
