@@ -3,6 +3,8 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from users import views as user_views
 from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 # LogoutViewを拡張してGETリクエストを許可するクラスを作成
 class CustomLogoutView(auth_views.LogoutView):
@@ -17,3 +19,7 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('blog.urls')),
 ]
+
+# 開発環境でのメディアファイルの提供設定
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

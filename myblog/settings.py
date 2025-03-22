@@ -133,3 +133,7 @@ LOGIN_REDIRECT_URL = "blog-home"  # ログイン成功後のリダイレクト�
 LOGIN_URL = "login"  # ログインページのURL名
 
 LOGOUT_REDIRECT_URL = '/' # ログアウト
+
+# settings.py に追加
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

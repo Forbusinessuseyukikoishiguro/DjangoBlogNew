@@ -11,6 +11,32 @@
             </div>
         {% endif %}
         <div>{{ object.content }}</div>
+
+        <!-- ここから音声ファイルとYouTube動画の表示部分を追加 -->
+        {% if object.audio_file %}
+        <div class="audio-section" style="margin: 20px 0;">
+            <h3>音声</h3>
+            <audio controls style="width: 100%;">
+                <source src="{{ object.audio_file.url }}" type="audio/mpeg">
+                お使いのブラウザは音声再生をサポートしていません。
+            </audio>
+        </div>
+        {% endif %}
+
+        {% if object.youtube_url %}
+        <div class="video-section" style="margin: 20px 0;">
+            <h3>動画</h3>
+            <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/{{ object.youtube_url|slice:'32:'|default:object.youtube_url }}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        {% endif %}
+        <!-- ここまで追加 -->
     </article>
     <p><a href="{% url 'blog-home' %}">← ホームに戻る</a></p>
 {% endblock %}
