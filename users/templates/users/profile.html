@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h2>{{ user.username }}さんのプロフィール</h2>
+    <p>{{ user.email }}</p>
+    <div>
+        <h3>あなたの投稿</h3>
+        {% for post in user.post_set.all %}
+            <div>
+                <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                <small>{{ post.date_posted|date:"Y年m月d日" }}</small>
+            </div>
+        {% empty %}
+            <p>まだ投稿がありません。</p>
+        {% endfor %}
+    </div>
+{% endblock %}
