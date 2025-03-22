@@ -1,16 +1,52 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h2>{{ user.username }}さんのプロフィール</h2>
-    <p>{{ user.email }}</p>
-    <div>
-        <h3>あなたの投稿</h3>
-        {% for post in user.post_set.all %}
-            <div>
-                <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
-                <small>{{ post.date_posted|date:"Y年m月d日" }}</small>
+    <article>
+        <h2>{{ user.username }}さんのプロフィール</h2>
+        
+        <div class="profile-section">
+            <h3>基本情報</h3>
+            <p>{{ user.email }}</p>
+            
+            <!-- AIエンジニア転職目標情報 -->
+            <div class="career-goals">
+                <h3>キャリア目標</h3>
+                <p><strong>目標：</strong>AIエンジニアへの転職（2026年中を目安）</p>
+                <p><strong>現在の状況：</strong>プログラミング学習中（Django、Python）</p>
+                <p><strong>学習中の技術：</strong>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">機械学習基礎</span>
+                    <span class="skill-tag">データ分析</span>
+                </p>
+                <p><strong>今後の学習予定：</strong>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">AIプロジェクト開発</span>
+                </p>
             </div>
-        {% empty %}
-            <p>まだ投稿がありません。</p>
-        {% endfor %}
-    </div>
+            
+            <!-- 学習の進捗状況 -->
+            <div class="learning-progress">
+                <h3>学習の進捗状況</h3>
+                <p>現在、以下のロードマップに沿って学習を進めています：</p>
+                <ol>
+                    <li><strong>Webアプリケーション開発基礎</strong> - Djangoを使ってブログアプリを作成し、基本的なWeb開発の知識を習得中 ✓</li>
+                    <li><strong>AIプロジェクト開発</strong> - 実践的なAIアプリケーション開発</li>
+                    <li><strong>ポートフォリオ作成と転職活動</strong> - 学習した内容を活かしたポートフォリオ制作（2026年4月〜）</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="profile-section">
+            <h3>あなたの投稿</h3>
+            {% for post in user.post_set.all %}
+                <div class="post-item">
+                    <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                    <small>{{ post.date_posted|date:"Y年m月d日" }}</small>
+                </div>
+            {% empty %}
+                <p>まだ投稿がありません。</p>
+            {% endfor %}
+        </div>
+    </article>
 {% endblock %}
