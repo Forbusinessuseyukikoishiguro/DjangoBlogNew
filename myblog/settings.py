@@ -48,14 +48,25 @@ INSTALLED_APPS = [
 
 
 # CKEditorの設定
-CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
         'height': 300,
         'width': 'full',
     },
-}   
+}
+
+# CKEditorのアップロード機能を一時的に無効にする（本番環境では外部ストレージを使用することをお勧めします）
+CKEDITOR_UPLOAD_PATH = ""
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+  
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # この行を追加
