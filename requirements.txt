@@ -17,7 +17,6 @@ dbus-python==1.2.18
 distro==1.7.0
 distro-info==1.1+ubuntu0.2
 Django==5.1.6
-config
 django-ckeditor==6.7.2
 django-js-asset==3.1.2
 httplib2==0.20.2
