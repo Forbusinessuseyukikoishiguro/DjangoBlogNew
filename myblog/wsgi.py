@@ -14,3 +14,34 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myblog.settings")
 
 application = get_wsgi_application()
+
+
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "myblog/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "myblog/wsgi.py"
+    }
+  ]
+}
+
+app = applicationapp = application
