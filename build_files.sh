@@ -1,2 +1,3 @@
-pip install -r requirements.txt
-Python 3.10.12 manage.py collectstatic --noinput
+#!/bin/bash
+python -m pip install -r requirements.txt
+python manage.py collectstatic --noinput
